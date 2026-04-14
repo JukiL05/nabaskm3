@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Warung Nabas KM3</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <nav>
+        <img src="logo.jpeg" alt="Logo" class="logo">
+        <div class="menu-toggle" id="mobile-menu">☰</div>
+        <div class="nav-links" id="nav-links">
+            <a href="#beranda">Beranda</a>
+            <a href="#produk">Produk</a>
+            <a href="#keranjang">Keranjang <span id="cart-count">0</span></a>
+            <a href="#tentang">Tentang</a>
+        </div>
+    </nav>
+
+    <section id="beranda">
+        <h1>Warung Nabas KM3</h1>
+        <p>Sajian Nasi Babi Se'i Khas NTT yang Menggugah Selera. Rasakan kenikmatan di setiap gigitan.</p>
+    </section>
+
+    <section id="produk">
+        <h2>Menu Kami</h2>
+
+        <div class="kategori-produk">
+            <h3>⭐ Rekomendasi Menu</h3>
+            <div class="produk-grid">
+                <div class="card">
+                    <span class="badge-rek">Rekomendasi</span>
+                    <img src="Nabas_Se'i.png"
+                        alt="Nasi Babi Se'i">
+                    <h4>Nasi Babi Se'i & Sop Brenebon</h4>
+                    <p>Porsi lengkap dengan kuah kaldu.</p>
+                    <p class="harga">Rp 25.000</p>
+                    <button class="btn-tambah"
+                        onclick="tambahKeKeranjang('p1', 'Nasi Babi Se\'i', 25000, 'https://via.placeholder.com/600x400?text=Nasi+Babi+Se\'i+Landscape')">Tambah
+                        ke Keranjang</button>
+                </div>
+                <div class="card">
+                    <span class="badge-rek">Terlaris</span>
+                    <img src="Nasgor_Se'i.png"
+                        alt="Nasi Goreng Se'i Babi">
+                    <h4>Nasi Goreng Se'i Babi</h4>
+                    <p>Gurih, renyah, dan bumbu meresap sempurna.</p>
+                    <p class="harga">Rp 20.000</p>
+                    <button class="btn-tambah"
+                        onclick="tambahKeKeranjang('p2', 'Nasi Goreng Se\'i Babi', 20000, 'https://via.placeholder.com/600x400?text=Nasi+Goreng+Se\'i+Babi+Landscape')">Tambah
+                        ke Keranjang</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="kategori-produk">
+            <h3>Semua Produk</h3>
+            <div class="produk-grid">
+                <div class="card">
+                    <img src="Nabas_Se'i.png"
+                        alt="Nasi Babi Biasa">
+                    <h4>Nasi Se'i Babi & Sup Brenebon</h4>
+                    <p>Porsi pas untuk makan siang.</p>
+                    <p class="harga">Rp 25.000</p>
+                    <button class="btn-tambah"
+                        onclick="tambahKeKeranjang('p3', 'Nasi Se\'i Babi & Sup Brenebon', 25000, 'https://via.placeholder.com/600x400?text=Nasi+Se\'i+Babi+Sup+Brenebon+Landscape')">Tambah
+                        ke Keranjang</button>
+                </div>
+                <div class="card">
+                    <img src="Nasgor_Se'i.png" alt="Nasi Goreng Se'i Babi">
+                    <h4>Nasi Goreng Se'i Babi</h4>
+                    <p>Bumbu gurih khas KM3.</p>
+                    <p class="harga">Rp 20.000</p>
+                    <button class="btn-tambah"
+                        onclick="tambahKeKeranjang('p4', 'Sate Babi', 20000, 'https://via.placeholder.com/600x400?text=Sate+Babi+Landscape')">Tambah
+                        ke Keranjang</button>
+                </div>
+                <div class="card">
+                    <img src="RiceBowl_Se'i.png" alt="Rice Bowl">
+                    <h4>Rice Bowl Babi Kecap</h4>
+                    <p>Menu spesial dengan nasi, daging babi kecap, dan sayur.</p>
+                    <p class="harga">Rp 30.000</p>
+                    <button class="btn-tambah"
+                        onclick="tambahKeKeranjang('p5', 'Rice Bowl Babi Kecap', 30000, 'https://via.placeholder.com/600x400?text=Rice+Bowl+Babi+Kecap+Landscape')">Tambah
+                        ke Keranjang</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="keranjang">
+        <h2>Keranjang Pesanan</h2>
+        <div class="keranjang-wrapper">
+            <div id="keranjang-container" class="keranjang-container">
+            </div>
+            <div class="ringkasan-keranjang">
+                <div style="text-align: left; margin-bottom: 20px;">
+                    <h3 style="text-align: left; border-bottom: 1px solid #ddd; padding-bottom: 10px;">Data Pengiriman
+                    </h3>
+
+                    <div style="margin: 15px 0;">
+                        <label style="display: block; font-weight: bold; margin-bottom: 5px;">Nama Pemesan:</label>
+                        <input type="text" id="nama-pembeli" placeholder="Contoh: Juan"
+                            style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px;">
+                    </div>
+
+                    <div style="margin: 15px 0;">
+                        <label style="display: block; font-weight: bold; margin-bottom: 5px;">Area Pengantaran:</label>
+                        <select id="area-pengantaran"
+                            style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px; background: white;">
+                            <option value="">-- Pilih Area --</option>
+                            <option value="KM 1">KM 1</option>
+                            <option value="KM 2">KM 2</option>
+                            <option value="KM 3 (Sekitar Warung)">KM 3 (Sekitar Warung)</option>
+                            <option value="KM 4">KM 4</option>
+                            <option value="KM 5">KM 5</option>
+                            <option value="Kota Waingapu">Kota Waingapu</option>
+                            <option value="Ambil Sendiri">Ambil Sendiri di Warung</option>
+                        </select>
+                    </div>
+
+                    <div style="margin: 15px 0;">
+                        <label style="display: block; font-weight: bold; margin-bottom: 5px;">Alamat Lengkap /
+                            Patokan:</label>
+                        <textarea id="alamat-lengkap" placeholder="Contoh: Depan bengkel, pagar warna kuning" rows="3"
+                            style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px; resize: none;"></textarea>
+                    </div>
+                </div>
+
+                <div style="background: #fdf2f2; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                    <h3 style="margin-bottom: 0;">Total: <span id="total-harga">Rp 0</span></h3>
+                    <p style="font-size: 0.8rem; color: #666;">*Belum termasuk ongkir (akan diinfokan via WA)</p>
+                </div>
+
+                <button class="btn-pesan" id="btn-pesan" onclick="lanjutPesan()">Pesan via WhatsApp</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="tentang">
+        <h2>Tentang Kami</h2>
+        <div class="tentang-konten">
+            <p>Berawal dari cita rasa rumahan, Warung Nabas KM3 kini hadir untuk memberikan pengalaman menikmati olahan
+                babi terbaik. Kami selalu menjaga kualitas bahan dan bumbu rempah pilihan agar setiap pelanggan
+                mendapatkan kepuasan maksimal.</p>
+            <br>
+            <p>-Reyn Kevin Kila (Owner)-</p>
+        </div>
+    </section>
+
+    <div class="social-buttons">
+        <a href="https://wa.me/6288224963871" target="_blank" class="btn-social wa">
+            <span>Chat WhatsApp</span>
+        </a>
+        <a href="https://www.tiktok.com/@kopisenjaofc" target="_blank" class="btn-social tiktok">
+            <span>Follow TikTok</span>
+        </a>
+    </div>
+
+    <script>
+        // Logika Menu Mobile
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+        const links = document.querySelectorAll('.nav-links a');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // ==========================================
+        // LOGIKA KERANJANG BELANJA
+        // ==========================================
+        let keranjang = [];
+
+        // Format angka ke Rupiah
+        function formatRupiah(angka) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka);
+        }
+
+        // Tambah produk ke array keranjang
+        function tambahKeKeranjang(id, nama, harga, gambar) {
+            let itemIndex = keranjang.findIndex(i => i.id === id);
+
+            if (itemIndex > -1) {
+                // Jika sudah ada, tambah jumlahnya
+                keranjang[itemIndex].qty += 1;
+            } else {
+                // Jika belum ada, masukkan sebagai item baru
+                keranjang.push({ id, nama, harga, gambar, qty: 1 });
+            }
+
+            renderKeranjang();
+            alert(`${nama} berhasil ditambahkan ke keranjang!`);
+        }
+
+        // Ubah jumlah barang di keranjang (+ atau -)
+        function ubahJumlah(id, perubahan) {
+            let itemIndex = keranjang.findIndex(i => i.id === id);
+
+            if (itemIndex > -1) {
+                keranjang[itemIndex].qty += perubahan;
+
+                // Jika jumlahnya jadi 0, hapus dari keranjang
+                if (keranjang[itemIndex].qty <= 0) {
+                    hapusItem(id);
+                } else {
+                    renderKeranjang();
+                }
+            }
+        }
+
+        // Hapus item dari keranjang
+        function hapusItem(id) {
+            keranjang = keranjang.filter(i => i.id !== id);
+            renderKeranjang();
+        }
+
+        // Perbarui tampilan HTML keranjang
+        function renderKeranjang() {
+            const container = document.getElementById('keranjang-container');
+            const totalHargaEl = document.getElementById('total-harga');
+            const cartCountEl = document.getElementById('cart-count');
+
+            container.innerHTML = '';
+            let total = 0;
+            let totalBarang = 0;
+
+            if (keranjang.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color: #777; margin-bottom: 2rem;">Keranjang Anda masih kosong. Silakan pilih menu terlebih dahulu.</p>';
+            } else {
+                keranjang.forEach(item => {
+                    total += item.harga * item.qty;
+                    totalBarang += item.qty;
+
+                    // STRUKTUR ITEM KERANJANG DIUBAH - GAMBAR DIHAPUS
+                    container.innerHTML += `
+                        <div class="keranjang-item">
+                            <div class="info-item-text">
+                                <h4 style="margin-bottom: 2px;">${item.nama}</h4>
+                                <p style="color: var(--primary-color); font-weight: bold; font-size: 0.9rem;">${formatRupiah(item.harga)}</p>
+                            </div>
+                            <div class="kontrol-item">
+                                <div class="qty-control">
+                                    <button onclick="ubahJumlah('${item.id}', -1)">-</button>
+                                    <span>${item.qty}</span>
+                                    <button onclick="ubahJumlah('${item.id}', 1)">+</button>
+                                </div>
+                                <button class="btn-hapus" onclick="hapusItem('${item.id}')">Hapus</button>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            totalHargaEl.innerText = formatRupiah(total);
+            cartCountEl.innerText = totalBarang;
+        }
+
+        // Fungsi Pesan via WhatsApp
+        function lanjutPesan() {
+            const nama = document.getElementById('nama-pembeli').value;
+            const area = document.getElementById('area-pengantaran').value;
+            const alamat = document.getElementById('alamat-lengkap').value;
+
+            if (keranjang.length === 0) {
+                alert("Keranjang masih kosong!");
+                return;
+            }
+            if (!nama || !area || !alamat) {
+                alert("Mohon lengkapi Nama, Area, dan Alamat Pengiriman.");
+                return;
+            }
+
+            let pesan = `*PESANAN BARU - NABAS KM3*\n`;
+            pesan += `----------------------------------\n`;
+            pesan += `👤 *Nama:* ${nama}\n`;
+            pesan += `📍 *Area:* ${area}\n`;
+            pesan += `🏠 *Alamat:* ${alamat}\n`;
+            pesan += `----------------------------------\n\n`;
+            pesan += `*Daftar Menu:*\n`;
+
+            let total = 0;
+            keranjang.forEach((item, index) => {
+                const subtotal = item.harga * item.qty;
+                pesan += `${index + 1}. ${item.nama} (${item.qty}x) = ${formatRupiah(subtotal)}\n`;
+                total += subtotal;
+            });
+
+            pesan += `\n----------------------------------\n`;
+            pesan += `*TOTAL ITEM:* ${formatRupiah(total)}\n`;
+            pesan += `----------------------------------\n`;
+            pesan += `\n_Mohon segera diproses ya admin, terima kasih!_`;
+
+            const nomorWA = "6288224963871"; // GANTI JIKA PERLU
+            const urlWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
+            window.open(urlWA, '_blank');
+        }
+
+        // Panggil render saat web pertama kali dimuat
+        renderKeranjang();
+    </script>
+
+</body>
+
+</html>

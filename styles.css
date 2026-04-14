@@ -1,0 +1,410 @@
+/* === Variabel Warna & Reset Dasar === */
+:root {
+    --primary-color: #d32f2f;
+    /* Merah aksen, cocok untuk kuliner */
+    --text-dark: #333333;
+    --bg-light: #f9f9f9;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    /* Efek scroll halus saat menu diklik */
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* === Sticky Navbar === */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--white);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.logo {
+    height: 60px;
+    border-radius: 100px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* === Layout Section Umum === */
+section {
+    min-height: 100vh;
+    /* Memastikan tiap halaman setidaknya setinggi layar */
+    padding: 100px 5% 50px;
+    /* Padding atas 100px agar tidak tertutup sticky navbar */
+    display: flex;
+    flex-direction: column;
+}
+
+h1,
+h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+}
+
+/* === Bagian Beranda === */
+#beranda {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgb(0, 117, 51), rgba(41, 84, 61, 0.6)), url('https://via.placeholder.com/1200x800/333333/ffffff?text=Warung+Nabas+KM3') no-repeat center center/cover;
+    color: var(--white);
+}
+
+#beranda h1 {
+    color: var(--white);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* === Bagian Produk === */
+.kategori-produk {
+    margin-bottom: 3rem;
+}
+
+.kategori-produk h3 {
+    border-left: 4px solid var(--primary-color);
+    padding-left: 10px;
+    margin-bottom: 1.5rem;
+}
+
+/* Grid fleksibel untuk produk */
+.produk-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* Min-width card diperlebar sedikit */
+    gap: 2rem;
+}
+
+.card {
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* --- UPDATE UNTUK GAMBAR LANDSCAPE MENU UTAMA --- */
+.card img {
+    width: 100%;
+    /* Gunakan aspect-ratio untuk memaksa orientasi landscape */
+    /* Opsional: '3/2' (klasik landscape) atau '16/9' (wide) */
+    aspect-ratio: 16 / 9;
+    height: auto;
+    object-fit: cover;
+    /* Pastikan gambar memenuhi aspect-ratio tanpa gepeng */
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.badge-rek {
+    background-color: #ff9800;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    display: inline-block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* === Bagian Tentang === */
+#tentang {
+    justify-content: center;
+    align-items: center;
+}
+
+.tentang-konten {
+    max-width: 800px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* === Responsif untuk HP (Maksimal lebar 768px) === */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        text-align: center;
+        padding: 1rem 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    #beranda h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Harga di Card Produk */
+.harga {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin: 10px 0;
+}
+
+/* Tombol Tambah ke Keranjang */
+.btn-tambah {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 10px 15px;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-tambah:hover {
+    background-color: #b71c1c;
+}
+
+/* Badge Notifikasi Keranjang di Navbar */
+#cart-count {
+    background-color: #ff9800;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 8px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+/* --- Layout Section Keranjang --- */
+.keranjang-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+    background: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.keranjang-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    flex-wrap: wrap;
+    /* Agar rapi di HP */
+    gap: 15px;
+}
+
+/* --- UPDATE KERANJANG - TANPA GAMBAR --- */
+.info-item-text {
+    flex: 1;
+    text-align: left;
+}
+
+.kontrol-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.qty-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-light);
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.qty-control button {
+    background: var(--white);
+    border: 1px solid #ddd;
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qty-control button:hover {
+    background: #eee;
+}
+
+.qty-control span {
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+}
+
+.btn-hapus {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-hapus:hover {
+    background-color: #d32f2f;
+}
+
+.ringkasan-keranjang {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px dashed #ddd;
+}
+
+.ringkasan-keranjang h3 {
+    text-align: right;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}
+
+.btn-pesan {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.btn-pesan:hover {
+    background-color: #388E3C;
+}
+
+/* Penyesuaian Responsif Keranjang untuk HP */
+@media (max-width: 600px) {
+    .keranjang-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .kontrol-item {
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+}
+
+/* === Gaya Tombol Social Media === */
+.social-buttons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 2000;
+}
+
+.btn-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    border-radius: 50px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, opacity 0.3s;
+}
+
+.btn-social:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+/* Warna Brand */
+.wa {
+    background-color: #25D366;
+    /* Hijau WhatsApp */
+}
+
+.tiktok {
+    background-color: #000000;
+    /* Hitam TikTok */
+    border: 1px solid #fe2c55;
+}
+
+/* Responsif: Di HP tulisan bisa disembunyikan jika ingin hanya ikon */
+@media (max-width: 600px) {
+    .btn-social span {
+        font-size: 0.8rem;
+    }
+
+    .social-buttons {
+        bottom: 15px;
+        right: 15px;
+    }
+}
